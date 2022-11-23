@@ -6,7 +6,7 @@ Wilson
 
 
 def main():
-    print("Hi Kelly")
+    pass
 
 
 # Press the green button in the gutter to run the script.
