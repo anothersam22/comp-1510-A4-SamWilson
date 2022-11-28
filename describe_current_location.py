@@ -6,3 +6,4 @@ def describe_current_location(game_board: dict, character: dict) -> str:
 
     """
     return game_board[(character["X-coordinate"], character["Y-coordinate"])]
+
