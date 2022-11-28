@@ -15,6 +15,7 @@ def make_character(character):
     dictionary = {"Name": character,
                   "X-Coordinate": 0,
                   "Y-Coordinate": 0,
+                  "Level": 1,
                   "Strength": 0,
                   "Speed": 0,
                   "Shield": 0,
