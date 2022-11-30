@@ -21,8 +21,9 @@ def main():
     directions = ("North", "East", "South", "West")
     character_direction = get_user_choice(directions)
     print(f"The character has chosen to go {directions[character_direction]}")
-    combat_choices = ("Try to negotiate", "Run for our lives", "Fight to the death!")
+    combat_choices = ("Flirt with the enemy", "Run for our lives", "Fight to the death!")
     character_combat = get_user_choice(combat_choices)
+    riddle_choices = ("Kill the riddler!", "Answer the riddle", "Run away, riddles are for nerds!")
 
 
 if __name__ == "__main__":
