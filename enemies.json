@@ -1,3 +1,27 @@
-{
-  "name": "skeleton"
-}
+[
+  {
+    "name": "skeleton",
+    "Description": "A reanimated skeleton looks at you menacingly",
+    "Max HP": "100",
+    "Current HP": "100",
+    "Strength": "10",
+    "Defense": "5"
+  },
+  {
+  "name": "dog with rabies",
+  "Description": "The dog growls at you while foaming from the mouth",
+  "Max HP": "100",
+  "Current HP": "100",
+  "Strength": "5",
+  "Defense": "5"
+  },
+
+  {
+  "name": "alien",
+  "Description": "The alien points at you with its many fingers",
+  "Max HP": "100",
+  "Current HP": "100",
+  "Strength": "10",
+  "Defense": "5"
+  },
+]
