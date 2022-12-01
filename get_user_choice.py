@@ -5,6 +5,12 @@ A01266055
 
 
 def get_user_choice(choices):
+    """
+    Asks the player for their choices and uses their choice.
+
+    :param choices: must be an enumerated string
+    :return: an action for the character
+    """
     while True:
         print("What would you like to do?")
         for number, choice in enumerate(choices, 1):

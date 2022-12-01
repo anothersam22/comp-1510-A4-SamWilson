@@ -9,9 +9,13 @@ level = 1
 
 
 def make_board(rows: int, columns: int, encounter_pct: int) -> dict:
-    """ 
-    A function to create game board
+    """
+    A function that creates the game board
 
+    :param rows: must be an int
+    :param columns: must be an int
+    :param encounter_pct: must be an int
+    :return: the game board
     """
     grid = [[(x_coordinates, y_coordinates) for y_coordinates in range(columns)]
             for x_coordinates in range(rows)]
@@ -29,7 +33,7 @@ def main():
     """
     Drive the program
     """
-
+    pass
 
 if __name__ == '__main__':
     main()

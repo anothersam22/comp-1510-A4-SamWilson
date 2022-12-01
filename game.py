@@ -14,8 +14,6 @@ for _ in range(20):
 print(choices)
 
 
-
-
 def main():
     pass
 
@@ -23,4 +21,3 @@ def main():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main()
-

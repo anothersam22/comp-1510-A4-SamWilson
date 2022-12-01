@@ -8,8 +8,8 @@ def make_character(character):
     """
     Makes the character.
 
-    :param character:
-    :return:
+    :param character: must be the input given by the user
+    :return: a created character
     """
 
     dictionary = {"Name": character,

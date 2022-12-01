@@ -1,4 +1,9 @@
 def execute_challenge_protocol():
+    """
+    Executes the code when the character encounters a challenge.
+
+    :return:
+    """
     pass
 
 
