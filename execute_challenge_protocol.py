@@ -1,4 +1,5 @@
 import random
+import string
 
 
 def challenge_protocol(player, puzzles, cheat_mode):
@@ -13,7 +14,7 @@ def challenge_protocol(player, puzzles, cheat_mode):
     print()
     if cheat_mode:
         print("Solution:", solution)
-    print()
+        print()
 
     number_of_choices = 3
     answer_choices = ["  A = "+str(random.randint(0, 9))+"   B = "+str(random.randint(0, 9))+"   C = "+str(random.randint(0, 9))

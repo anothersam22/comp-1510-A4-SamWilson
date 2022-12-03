@@ -47,8 +47,6 @@ def character_has_leveled(player, encounter_percentage):
     return player, boss_state, dead_state
 
 
-
-
 def main():
     """
     Drive the program

@@ -3,11 +3,6 @@ import random
 import string
 from itertools import chain
 
-rows = 10
-columns = 10
-encounter_percentage = 20
-achieved_goal = False
-
 
 # run this at beginning of game once to get puzzle data into a list
 with open("puzzle_set_1.csv", newline='') as file:
@@ -67,8 +62,8 @@ def make_board(rows: int, columns: int, encounter_percentage: int) -> dict:
     grid = chain.from_iterable([[(x_coordinates, y_coordinates) for y_coordinates in range(columns)]
                                 for x_coordinates in range(rows)])
 
-    room_markers = [".  "] * int((rows*columns*(1-(encounter_percentage/100)))) +\
-                   ["$  "] * int((rows*columns*(encounter_percentage/100)))
+    room_markers = [".  "] * int((rows * columns * (1 - (encounter_percentage / 100)))) + \
+                   ["$  "] * int((rows * columns * (encounter_percentage / 100)))
 
     rooms = random.sample(room_markers, len(room_markers))
     game_board = {coordinates: room for coordinates, room in zip(grid, rooms)}
@@ -78,20 +73,21 @@ def make_board(rows: int, columns: int, encounter_percentage: int) -> dict:
 
 def describe_current_location(game_board: dict, character: dict) -> str:
     """
-    A function to print description and location of character
+       A function to print description and location of character on a map
 
+       :param game_board: a dictionary
+       :param character: a dictionary
 
-    """
-    rows = list(max(game_board.keys()))[0]+1
-    # if game_board[(character["X-Coordinate"], character["Y-Coordinate"])] == '$  ':
-    #     print("There is a puzzle here.")
-    # else:
-    #     print("There is no puzzle here.")
+       :precondition: must have two dictionaries that have location values
+       :postcondition: a string print out of map and location of character and puzzles
+       :returns a string print out of map and location of character represented by a "@" as well as puzzle locations
+       """
+    rows = list(max(game_board.keys()))[0] + 1
     game_board_copy = game_board.copy()
     game_board_copy[(character["X-Coordinate"],
                      character["Y-Coordinate"])] = "@  "
     game_board_characters = list(game_board_copy.values())
-    game_board_sliced = [game_board_characters[digits:digits+rows]
+    game_board_sliced = [game_board_characters[digits:digits + rows]
                          for digits in range(0, len(game_board_characters), rows)]  # slice list row length
     game_board_newlines = [row + ["\n"]
                            for row in game_board_sliced]  # then add "\n" to list
@@ -99,7 +95,7 @@ def describe_current_location(game_board: dict, character: dict) -> str:
 
     print(location_map)
 
-    # return location_map
+    return location_map
 
 
 def validate_move(move, player, rows):
@@ -138,9 +134,6 @@ def move_character(character):
             print("That is not a valid move")
             move_character(character)
 
-        print(character)
-        # return direction_choices[character_direction]
-
         return character
 
 
@@ -162,14 +155,15 @@ def challenge_protocol(player, puzzles, cheat_mode):
     print()
     print(puzzle)
     print()
-    if cheat_mode == True:
+    if cheat_mode:
         print("Solution:", solution)
     print()
 
     number_of_choices = 3
-    answer_choices = ["  A = "+str(random.randint(0, 9))+"   B = "+str(random.randint(0, 9))+"   C = "+str(random.randint(0, 9))
+    answer_choices = ["  A = " + str(random.randint(0, 9)) + "   B = " + str(random.randint(0, 9)) + "   C = " + str(
+        random.randint(0, 9))
                       for _ in range(number_of_choices)]
-    solution_choice = " ".join(["  "+letter+" = "+str(digit)
+    solution_choice = " ".join(["  " + letter + " = " + str(digit)
                                 for letter, digit in
                                 zip(string.ascii_uppercase, "".join(solution.split())) if digit.isnumeric()])
     correct_answer = "".join(solution.split())
@@ -250,7 +244,7 @@ def character_has_leveled(player, encounter_percentage):
         # puzzles = boss_puzzles
     elif player['Brain Power'] > boss_level:
         print()
-        print("YOU FISNISHED ALL PUZZLES")
+        print("YOU FINISHED ALL PUZZLES")
         print(f"{name} has achieved the level of PUZZLE MASTER")
         print()
         boss_state = True
@@ -266,34 +260,33 @@ def character_has_leveled(player, encounter_percentage):
     return player, boss_state, dead_state
 
 
-cheat_mode = False
-player_name = input("Welcome to game land, what is your name? ")
-character = make_character(player_name)
-board = make_board(rows, columns, encounter_percentage)
-quit_state = False
+def main():
+    rows = 10
+    columns = 10
+    encounter_percentage = 20
+    achieved_goal = False
+    cheat_mode = True
+    player_name = input("Welcome to game land, what is your name? ")
+    puzzle_player = make_character(player_name)
+    game_board = make_board(rows, columns, encounter_percentage)
+    quit_state = False
 
-while not achieved_goal:
-    describe_current_location(board, character)
-    move_character(character)
-    describe_current_location(board, character)
-    challenge = check_for_challenge(board, character)
-    if challenge:
-        character, quit_state = challenge_protocol(
-            character, puzzles, cheat_mode)
+    while not achieved_goal:
+        describe_current_location(game_board, puzzle_player)
+        move_character(puzzle_player)
+        describe_current_location(game_board, puzzle_player)
+        challenge = check_for_challenge(game_board, puzzle_player)
+        if challenge:
+            puzzle_player, quit_state = challenge_protocol(
+                puzzle_player, puzzles, cheat_mode)
 
-    if quit_state is True:
-        print("Goodbye!")
-        break
+        if quit_state is True:
+            print("Goodbye!")
+            break
 
-    character, boss_state, dead_state = character_has_leveled(
-        character, encounter_percentage)
+        character, boss_state, dead_state = character_has_leveled(
+            puzzle_player, encounter_percentage)
 
-    if boss_state or dead_state == True:
-        achieved_goal = True
+        if boss_state or dead_state:
+            achieved_goal = True
 
-# print(answers)
-
-# print(type(solution))
-# print(solution)
-# print(correct_answer)
-# #return puzzle, solution
