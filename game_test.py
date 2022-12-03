@@ -259,8 +259,7 @@ def character_has_leveled(player, encounter_percentage):
 
     return player, boss_state, dead_state
 
-
-def main():
+def game():
     rows = 10
     columns = 10
     encounter_percentage = 20
@@ -290,3 +289,10 @@ def main():
         if boss_state or dead_state:
             achieved_goal = True
 
+
+def main():
+    game()
+
+
+if __name__ == '__main__':
+    main()
