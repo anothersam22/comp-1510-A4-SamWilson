@@ -3,7 +3,7 @@ import random
 import string
 from itertools import chain
 
-# run this at beginning of game once to get puzzle data into a list
+
 with open("puzzle_set_1.csv", newline='') as file:
     reader = csv.reader(file)
     puzzles = list(reader)
@@ -14,6 +14,7 @@ def get_user_choice(choices: tuple or list) -> int:
     Gets the user choice from choices.
 
     :param choices: must be a tuple or a list
+    :precondition: user must enter a number, any other type of entry will crash the program.
     :precondition: choices must be a tuple or a list
     :postcondition: prints if input is not within the range print "That's not a valid choice"
     :postcondition: returns user choice - 1 if input is within the range
@@ -121,7 +122,8 @@ def validate_move(move: int, player: dict, rows: int) -> tuple:
     :param rows:
     :precondition: rows must be equal to columns
     :postcondition: boolean value of True of False depending on user move
-    :return: boolean True of False depending on if user move is out of bounds
+    :return: a tuple of consisting of: a boolean True of False depending on if user move is out of bounds
+             and an integer value of the amount to move the characters x or y coordinate.
     """
     move_key_values = {"Up": -1, "Down": 1,
                        "Right": 1, "Left": -1, }
@@ -229,12 +231,12 @@ def challenge_protocol(player: dict, puzzles: tuple or list, cheat_mode: int) ->
             print()
             if player['Level'] <= 3:
                 player["Brain Power"] += 10
-                print(player)
+                # print(player)
                 print()
                 print()
             else:
                 player["Brain Power"] += 1000
-                print(player)
+                # print(player)
                 print()
                 print()
         else:
@@ -243,12 +245,12 @@ def challenge_protocol(player: dict, puzzles: tuple or list, cheat_mode: int) ->
             print()
             if player['Level'] <= 3:
                 player["Brain Power"] -= 10
-                print(player)
+                # print(player)
                 print()
                 print()
             else:
                 player["Brain Power"] -= 1000
-                print(player)
+                # print(player)
                 print()
                 print()
 
@@ -270,6 +272,7 @@ def character_has_leveled(player: dict, encounter_percentage: int) -> dict and b
     level_3 = 500
     boss_level = 1000
     name = player["Name"]
+    brain_power = player['Brain Power']
     boss_state = False
     dead_state = False
 
@@ -319,7 +322,7 @@ def character_has_leveled(player: dict, encounter_percentage: int) -> dict and b
           ************************************************************************************************, 
             *********************************************************************************************   
                 """)
-        print()  # add level up acii func here
+        print()  # add level up ascii func here
     elif level_3 > player['Brain Power'] > level_2:
         player['Level'] += 1
         encounter_percentage += 20
@@ -481,7 +484,8 @@ def character_has_leveled(player: dict, encounter_percentage: int) -> dict and b
         dead_state = True
 
     # print(player)  # check to see if brain power increased and decreased.
-    print(player['Brain Power'])
+
+    print(f"{name} now has {brain_power} brain power.")
 
     return player, boss_state, dead_state
 
