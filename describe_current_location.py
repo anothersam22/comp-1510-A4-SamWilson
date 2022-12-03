@@ -8,15 +8,16 @@ from itertools import chain
 
 def describe_current_location(game_board: dict, character: dict) -> str:
     """
-    A function to print description and location of character
+    A function to print description and location of character on a map
 
+    :param game_board: a dictionary
+    :param character: a dictionary
 
+    :precondition: must have two dictionaries that have location values
+    :postcondition: a string print out of map and location of character and puzzles
+    :returns a string print out of map and location of character represented by a "@" as well as puzzle locations
     """
     rows = list(max(game_board.keys()))[0]+1
-    # if game_board[(character["X-Coordinate"], character["Y-Coordinate"])] == '$  ':
-    #     print("There is a puzzle here.")
-    # else:
-    #     print("There is no puzzle here.")
     game_board_copy = game_board.copy()
     game_board_copy[(character["X-Coordinate"],
                      character["Y-Coordinate"])] = "@  "
@@ -29,7 +30,4 @@ def describe_current_location(game_board: dict, character: dict) -> str:
 
     print(location_map)
 
-    # return location_map
-
-
-
+    return location_map
