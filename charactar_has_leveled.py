@@ -1,5 +1,12 @@
 
 def character_has_leveled(player, encounter_percentage):
+    """
+    Implements game functionalities when player levels up.
+
+    :param player: must be a dictionary key pair of the character and stats
+    :param encounter_percentage: must be a positive integer
+    :return: the players stats, if the player is alive, and if the boss is dead or not
+    """
     level_1 = 80
     level_2 = 220
     level_3 = 500
@@ -31,7 +38,7 @@ def character_has_leveled(player, encounter_percentage):
         # puzzles = boss_puzzles
     elif player['Brain Power'] > boss_level:
         print()
-        print("YOU FISNISHED ALL PUZZLES")
+        print("YOU FINISHED ALL PUZZLES")
         print(f"{name} has achieved the level of PUZZLE MASTER")
         print()
         boss_state = True
