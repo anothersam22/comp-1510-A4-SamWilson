@@ -10,18 +10,14 @@ def make_character(name: str) -> dict:
     Makes the character.
 
     :param name:
-    :return:
+    :return: dictionary for character with name, location, level, brain power,values.
     """
 
     player_dictionary = {"Name": name,
                          "X-Coordinate": random.randint(0, 9),
                          "Y-Coordinate": random.randint(0, 9),
                          "Level": 1,
-                         "Strength": 0,
-                         "Speed": 0,
-                         "Shield": 0,
-                         "Current HP": 100,
-                         "Max HP": 100
+                         "Brain Power": 0,
                          }
     return player_dictionary
 

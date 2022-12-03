@@ -13,13 +13,14 @@ def make_board(rows: int, columns: int, encounter_percentage: int) -> dict:
 
 
     """
-    grid = [[(x_coordinates, y_coordinates) for y_coordinates in range(columns)]
-            for x_coordinates in range(rows)]  # makes x,y coords for grid
-    grid_flattened = chain.from_iterable(grid)
-    empty_space = [".  "] * int((rows * columns * (1 - (encounter_percentage / 100))))
-    encounters = ["$  "] * int((rows * columns * (encounter_percentage / 100)))
-    populated_grid = random.sample(empty_space + encounters, len(empty_space + encounters))
-    game_board = {coordinates: location_name for coordinates, location_name in zip(grid_flattened, populated_grid)}
+    grid = chain.from_iterable([[(x_coordinates, y_coordinates) for y_coordinates in range(columns)]
+                                for x_coordinates in range(rows)])
+
+    room_markers = [".  "] * int((rows*columns*(1-(encounter_percentage/100)))) +\
+                   ["$  "] * int((rows*columns*(encounter_percentage/100)))
+
+    rooms = random.sample(room_markers, len(room_markers))
+    game_board = {coordinates: room for coordinates, room in zip(grid, rooms)}
 
     return game_board
 
