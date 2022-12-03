@@ -113,11 +113,10 @@ def validate_move(move, player, rows):
                  player["Y-Coordinate"] + move_key_values[move]) <= rows - 1, move_key_values[move]
 
 
-def move_character(character):
+def move_character(character,rows):
     while True:
         print("Which way do you want to go?")
         direction_choices = ("Up", "Down", "Right", "Left")
-
         character_direction = get_user_choice(direction_choices)
         state, move_value = validate_move(
             direction_choices[character_direction], character, rows)
@@ -132,7 +131,7 @@ def move_character(character):
                 character["Y-Coordinate"] += move_value
         else:
             print("That is not a valid move")
-            move_character(character)
+            move_character(character,rows)
 
         return character
 
@@ -272,7 +271,7 @@ def game():
 
     while not achieved_goal:
         describe_current_location(game_board, puzzle_player)
-        move_character(puzzle_player)
+        move_character(puzzle_player, rows)
         describe_current_location(game_board, puzzle_player)
         challenge = check_for_challenge(game_board, puzzle_player)
         if challenge:
