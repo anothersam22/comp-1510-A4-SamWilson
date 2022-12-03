@@ -3,14 +3,22 @@ import random
 import string
 from itertools import chain
 
-
 # run this at beginning of game once to get puzzle data into a list
 with open("puzzle_set_1.csv", newline='') as file:
     reader = csv.reader(file)
     puzzles = list(reader)
 
 
-def get_user_choice(choices):
+def get_user_choice(choices: tuple or list) -> int:
+    """
+    Gets the user choice from choices.
+
+    :param choices: must be a tuple or a list
+    :precondition: choices must be a tuple or a list
+    :postcondition: prints if input is not within the range print "That's not a valid choice"
+    :postcondition: returns user choice - 1 if input is within the range
+    :return: the user choice
+    """
     while True:
         # result = ""
         for number, choice in enumerate(choices, 1):
@@ -40,8 +48,10 @@ def make_character(name: str) -> dict:
     """
     Makes the character.
 
-    :param name:
-    :return: dictionary for character with name, location, level, brain power, max brain power values.
+    :param name: must be a string
+    :precondition: name must be a string
+    :postcondition: returns a dictionary for character with name, location, level, brain power, max brain power values
+    :return: dictionary for character with name, location, level, brain power, max brain power values
     """
 
     player_dictionary = {"Name": name,
@@ -55,9 +65,14 @@ def make_character(name: str) -> dict:
 
 def make_board(rows: int, columns: int, encounter_percentage: int) -> dict:
     """
-    A function to create game board and printable game map
+    Creates the game board.
 
-
+    :param rows: must be a positive integer
+    :param columns: must be a positive integer
+    :param encounter_percentage: must be a positive integer
+    :precondition: parameters must follow conditions
+    :postcondition: returns a dictionary with rows, column, and the encounter rate
+    :return: a dictionary with rows, columns, and the encounter rate
     """
     grid = chain.from_iterable([[(x_coordinates, y_coordinates) for y_coordinates in range(columns)]
                                 for x_coordinates in range(rows)])
@@ -73,15 +88,14 @@ def make_board(rows: int, columns: int, encounter_percentage: int) -> dict:
 
 def describe_current_location(game_board: dict, character: dict) -> str:
     """
-       A function to print description and location of character on a map
+    Prints the description and location of character on a map.
 
-       :param game_board: a dictionary
-       :param character: a dictionary
-
-       :precondition: must have two dictionaries that have location values
-       :postcondition: a string print out of map and location of character and puzzles
-       :returns a string print out of map and location of character represented by a "@" as well as puzzle locations
-       """
+    :param game_board: must be a dictionary
+    :param character: must be a dictionary
+    :precondition: must have two dictionaries that have location values
+    :postcondition: a string print out of map and location of character and puzzles
+    :returns a string print out of map and location of character represented by a "@" as well as puzzle locations
+    """
     rows = list(max(game_board.keys()))[0] + 1
     game_board_copy = game_board.copy()
     game_board_copy[(character["X-Coordinate"],
@@ -98,14 +112,16 @@ def describe_current_location(game_board: dict, character: dict) -> str:
     return location_map
 
 
-def validate_move(move, player, rows):
+def validate_move(move: int, player: dict, rows: int) -> tuple:
     """
     A Function that checks if player move is outside the boundary of the game.
 
+    :param move: must be an integer of 1 or -1
+    :param player: must contain the value from key "X-Coordinate" and "Y-Coordinate"
+    :param rows:
     :precondition: rows must be equal to columns
     :postcondition: boolean value of True of False depending on user move
-    returns: boolean True of False depending on if user move is out of bounds
-
+    :return: boolean True of False depending on if user move is out of bounds
     """
     move_key_values = {"Up": -1, "Down": 1,
                        "Right": 1, "Left": -1, }
@@ -113,7 +129,16 @@ def validate_move(move, player, rows):
                  player["Y-Coordinate"] + move_key_values[move]) <= rows - 1, move_key_values[move]
 
 
-def move_character(character,rows):
+def move_character(character: dict, rows: int) -> dict:
+    """
+    Moves the character on the game board.
+
+    :param character: must be a dictionary
+    :param rows: must be a positive integer
+    :precondition:
+    :postcondition:
+    :return: the character dictionary
+    """
     while True:
         print("Which way do you want to go?")
         direction_choices = ("Up", "Down", "Right", "Left")
@@ -131,12 +156,21 @@ def move_character(character,rows):
                 character["Y-Coordinate"] += move_value
         else:
             print("That is not a valid move")
-            move_character(character,rows)
+            move_character(character, rows)
 
         return character
 
 
-def check_for_challenge(board, character):
+def check_for_challenge(board: list or tuple, character: dict) -> True:
+    """
+    Checks for a challenge.
+
+    :param board: must be a list containing the values from the character keys "X-Coordinate" and "Y-Coordinate"
+    :param character: must be a dictionary with values from the keys "X-Coordinate" and "Y-Coordinate"
+    :precondition: parameters must follow conditions
+    :postcondition: returns True if the character moves to a "$ " on the game board
+    :return: True if the character moves to a "$ " on the game board
+    """
     if board[(character["X-Coordinate"], character["Y-Coordinate"])] == "$  ":
         print()
         print("There is a puzzle here.")
@@ -144,7 +178,17 @@ def check_for_challenge(board, character):
         return True
 
 
-def challenge_protocol(player, puzzles, cheat_mode):
+def challenge_protocol(player: dict, puzzles: tuple or list, cheat_mode: int) -> dict and bool:
+    """
+    Activates challenge protocol when check_for_challenge returns True
+
+    :param player: must be a dictionary
+    :param puzzles: must be a tuple or list
+    :param cheat_mode: must be a positive integer
+    :precondition: parameters must follow conditions
+    :postcondition: returns the player dictionary and quit state
+    :return: player and quit state
+    """
     puzzle_and_solution = random.sample(puzzles, 1)
     puzzle = "".join(puzzle_and_solution[0][0])
     solution = puzzle_and_solution[0][1]
@@ -211,7 +255,16 @@ def challenge_protocol(player, puzzles, cheat_mode):
     return player, quit_state
 
 
-def character_has_leveled(player, encounter_percentage):
+def character_has_leveled(player: dict, encounter_percentage: int) -> dict and bool:
+    """
+    Increases the character's stats.
+
+    :param player: must be a dictionary
+    :param encounter_percentage: must be a positive integer
+    :precondition: parameters must follow conditions
+    :postcondition: returns player, boss_state, and dead_state
+    :return: player, boss_state, and dead_state
+    """
     level_1 = 80
     level_2 = 220
     level_3 = 500
@@ -258,7 +311,11 @@ def character_has_leveled(player, encounter_percentage):
 
     return player, boss_state, dead_state
 
+
 def game():
+    """
+    Initializes the game.
+    """
     rows = 10
     columns = 10
     encounter_percentage = 20
@@ -290,6 +347,9 @@ def game():
 
 
 def main():
+    """
+    Runs the game.
+    """
     game()
 
 
