@@ -9,8 +9,8 @@ def make_character(name: str) -> dict:
     """
     Makes the character.
 
-    :param name:
-    :return: dictionary for character with name, location, level, brain power,values.
+    :param name: must be a string
+    :return: dictionary for character with name, location, level, brain power, and values.
     """
 
     player_dictionary = {"Name": name,
