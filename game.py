@@ -503,7 +503,7 @@ def game():
 
 
 )
-    player_name = input("Welcome to Sudoku land, what is your name? ")
+    player_name = input("Welcome to Sudoku Land, what is your name? ")
     puzzle_player = make_character(player_name)
     game_board = make_board(rows, columns, encounter_percentage)
     quit_state = False
