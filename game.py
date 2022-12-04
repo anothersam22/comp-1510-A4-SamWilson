@@ -169,24 +169,22 @@ def check_for_challenge(board: list or tuple, character: dict) -> True:
 
 
 def challenge_protocol(player: dict,
-                       puzzles: tuple or list,
+                       abc_puzzles: tuple or list,
                        cheat_mode: bool,
                        level_3: int, ) -> dict and bool:
     """
     Activates challenge protocol when check_for_challenge returns True
 
     :param player: must be a dictionary
-    :param puzzles: must be a tuple or list
+    :param abc_puzzles: must be a tuple or list
     :param cheat_mode: must be a positive integer
-    :param level_1: must be a positive integer
-    :param level_2: must be a positive integer
     :param level_3: must be a positive integer
     :precondition: parameters must follow conditions
     :postcondition: returns the player dictionary and quit state
     :return: player and quit state
     """
     brain_power = player['Brain Power']
-    puzzle_and_solution = random.sample(puzzles, 1)
+    puzzle_and_solution = random.sample(abc_puzzles, 1)
     puzzle = "".join(puzzle_and_solution[0][0])
     solution = puzzle_and_solution[0][1]
     quit_state = False
