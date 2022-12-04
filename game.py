@@ -1,14 +1,12 @@
 """
 Sam A01337600
-Wilson
-
+Wilson A01266055
 """
 
 import csv
 import random
 import string
 from itertools import chain
-
 
 with open("puzzle_set_1.csv", newline='') as file:
     reader = csv.reader(file)
@@ -27,28 +25,13 @@ def get_user_choice(choices: tuple or list) -> int:
     :return: the user choice
     """
     while True:
-        # result = ""
         for number, choice in enumerate(choices, 1):
             print(number, choice)
-        print(f"Pick a number between 1 and {len(choices)}: ")
-
-        # user_pick = input()
-        # if user_pick.isnumeric():
-        #     user_choice = int(input())
-        #     if 1 <= user_choice <= len(choices):
-        #         result = user_choice - 1
-        #     else:
-        #         print("That's not a valid choice")
-        # else:
-        #     print("Must enter a number!")
-
-        # return result
+        print(f"\nPick a number between 1 and {len(choices)}: ")
 
         user_choice = int(input())
         if 1 <= user_choice <= len(choices):
             return user_choice - 1
-        else:
-            print("That's not a valid choice")
 
 
 def make_character(name: str) -> dict:
@@ -109,6 +92,7 @@ def describe_current_location(game_board: dict, character: dict) -> str:
     game_board_copy[(character["X-Coordinate"],
                      character["Y-Coordinate"])] = "@  "
     game_board_characters = list(game_board_copy.values())
+
     game_board_sliced = [game_board_characters[digits:digits + rows]
                          for digits in range(0, len(game_board_characters), rows)]  # slice list row length
     game_board_newlines = [row + ["\n"]
@@ -116,7 +100,6 @@ def describe_current_location(game_board: dict, character: dict) -> str:
     location_map = "".join(list(chain.from_iterable(game_board_newlines)))
 
     print(location_map)
-
     return location_map
 
 
@@ -164,7 +147,7 @@ def move_character(character: dict, rows: int) -> dict:
             elif direction_choices[character_direction] == "Left":
                 character["Y-Coordinate"] += move_value
         else:
-            print("That is not a valid move")
+            print("\nThat is not a valid move!\n")
             move_character(character, rows)
 
         return character
@@ -181,9 +164,7 @@ def check_for_challenge(board: list or tuple, character: dict) -> True:
     :return: True if the character moves to a "$ " on the game board
     """
     if board[(character["X-Coordinate"], character["Y-Coordinate"])] == "$  ":
-        print()
-        print("There is a puzzle here.")
-        print()
+        print("\nThere is a puzzle here.")
         return True
 
 
@@ -192,7 +173,7 @@ def challenge_protocol(player: dict,
                        cheat_mode: bool,
                        level_1: int,
                        level_2: int,
-                       level_3: int,) -> dict and bool:
+                       level_3: int, ) -> dict and bool:
     """
     Activates challenge protocol when check_for_challenge returns True
 
@@ -211,14 +192,11 @@ def challenge_protocol(player: dict,
     puzzle = "".join(puzzle_and_solution[0][0])
     solution = puzzle_and_solution[0][1]
     quit_state = False
-    print()
-    print("What are the values of A, B and C?")
-    print()
-    print(puzzle)
-    print()
+
+    print("\nWhat are the values of A, B and C?\n")
+    print(puzzle, "\n")
     if cheat_mode:
-        print("Solution:", solution)
-    print()
+        print("Solution:", solution, "\n")
 
     number_of_choices = 3
     answer_choices = ["  A = " + str(random.randint(0, 9)) + "   B = " + str(random.randint(0, 9)) + "   C = " + str(
@@ -242,33 +220,21 @@ def challenge_protocol(player: dict,
         quit_state = True
     else:
         if player_choice_numerals == correct_answer:
-            print()
-            print("Congratulations, you solved the puzzle!")
-            print()
+            print("\nCongratulations, you solved the puzzle!")
             if brain_power <= level_3:
                 player["Brain Power"] += 10
-                # print(player)
-                print()
-                print()
+                print("\n")
             else:
                 player["Brain Power"] += 1000
-                # print(player)
-                print()
-                print()
+                print("\n")
         else:
-            print()
-            print("That is not the correct answer.")
-            print()
+            print("That is not the correct answer!")
             if brain_power <= level_3:
                 player["Brain Power"] -= 10
-                # print(player)
-                print()
-                print()
+                print("\n")
             else:
                 player["Brain Power"] -= 1000
-                # print(player)
-                print()
-                print()
+                print("\n")
 
     return player, quit_state
 
@@ -298,9 +264,7 @@ def character_has_leveled(player: dict,
     boss_state = False
     dead_state = False
 
-
     if level_2 > player['Brain Power'] > level_1:
-        # player['Level'] += 1
         encounter_percentage += 20
         if len(player['Level Tracker']) == 0:
             print()
@@ -346,16 +310,12 @@ def character_has_leveled(player: dict,
               ************************************************************************************************, 
                 *********************************************************************************************   
                     """)
-            print()  # add level up ascii func here
             player['Level Tracker'].append(1)
 
     elif level_3 > player['Brain Power'] >= level_2:
-        # player['Level'] += 1
         player['Level Tracker'].append(2)
         encounter_percentage += 20
         if player['Level Tracker'][-1] != player['Level Tracker'][-2]:
-
-            print()
             print("""\
                                                 You have passed level 2!
               ..............................................................................................   
@@ -398,12 +358,9 @@ def character_has_leveled(player: dict,
               ************************************************************************************************, 
                 *********************************************************************************************   
                     """)
-            print()
     elif boss_level > player['Brain Power'] >= level_3:
-        # player['Level'] += 1
         player['Level Tracker'].append(3)
         if player['Level Tracker'][-1] != player['Level Tracker'][-2]:
-            print()
             print("""\
                                     You have passed level 3!
       ..............................................................................................   
@@ -446,15 +403,10 @@ def character_has_leveled(player: dict,
       ************************************************************************************************, 
         *********************************************************************************************   
             """)
-            print()
-            print("Time to the solve final puzzle:")
-            print()
-        # except you boss_puzzle instead of puzzles
-        # puzzles = boss_puzzles
+            print("\nTime to solve the final puzzle:\n")
     elif player['Brain Power'] > boss_level:
-        print()
-        print("YOU FINISHED ALL PUZZLES")
-        print(f"{name} has achieved the level of PUZZLE MASTER")
+        print("YOU FINISHED ALL PUZZLES!")
+        print(f"{name} has achieved the level of PUZZLE MASTER!")
         print("""\
                        *    *
            *         '       *       .  *   '     .           * *
@@ -514,8 +466,6 @@ def character_has_leveled(player: dict,
         print()
         dead_state = True
 
-    # print(player)  # check to see if brain power increased and decreased.
-
     print(f"{name} now has {brain_power} brain power.")
 
     return player, boss_state, dead_state
@@ -552,7 +502,7 @@ def game():
             break
 
         character, boss_state, dead_state = character_has_leveled(
-            puzzle_player, encounter_percentage, level_1, level_2,level_3)
+            puzzle_player, encounter_percentage, level_1, level_2, level_3)
 
         if boss_state or dead_state:
             achieved_goal = True
