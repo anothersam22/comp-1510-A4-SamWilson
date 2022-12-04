@@ -27,11 +27,11 @@ anothersam22 & WilsonSue
 <tbody>
 <tr>
 <td>tuple</td>
-<td>123</td>
+<td>68</td>
 </tr>
 <tr>
 <td>list</td>
-<td>123</td>
+<td></td>
 </tr>
 <td>dictionary comprehension</td>
 <td>123</td>
@@ -70,7 +70,7 @@ anothersam22 & WilsonSue
 </tr>
 
 <tr>
-<td>random</td>
+<td>rando</td>
 <td>123</td>
 </tr>
 
