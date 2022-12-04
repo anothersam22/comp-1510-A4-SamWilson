@@ -475,8 +475,35 @@ def game():
     columns = 10
     encounter_percentage = 20
     achieved_goal = False
-    cheat_mode = True # set to True if you want to see solution while playing.
-    player_name = input("Welcome to game land, what is your name? ")
+    cheat_mode = True  # set to True if you want to see solution while playing.
+    print("""\
+        .d8888b.  888     888 8888888b.   .d88888b.  888    d8P  888     888           
+        d88P  Y88b 888     888 888  "Y88b d88P" "Y88b 888   d8P   888     888           
+        Y88b.      888     888 888    888 888     888 888  d8P    888     888           
+         "Y888b.   888     888 888    888 888     888 888d88K     888     888           
+            "Y88b. 888     888 888    888 888     888 8888888b    888     888           
+              "888 888     888 888    888 888     888 888  Y88b   888     888           
+        Y88b  d88P Y88b. .d88P 888  .d88P Y88b. .d88P 888   Y88b  Y88b. .d88P           
+         "Y8888P"   "Y88888P"  8888888P"   "Y88888P"  888    Y88b  "Y88888P"            
+                                                                                        
+                                                                                        
+                                                                                        
+        888             d8888 888b    888 8888888b.                                     
+        888            d88888 8888b   888 888  "Y88b                                    
+        888           d88P888 88888b  888 888    888                                    
+        888          d88P 888 888Y88b 888 888    888                                    
+        888         d88P  888 888 Y88b888 888    888                                    
+        888        d88P   888 888  Y88888 888    888                                    
+        888       d8888888888 888   Y8888 888  .d88P                                    
+        88888888 d88P     888 888    Y888 8888888P
+ 
+        """
+
+
+
+
+)
+    player_name = input("Welcome to Sudoku land, what is your name? ")
     puzzle_player = make_character(player_name)
     game_board = make_board(rows, columns, encounter_percentage)
     quit_state = False
