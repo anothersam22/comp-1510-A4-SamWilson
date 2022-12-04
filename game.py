@@ -153,7 +153,7 @@ def move_character(character: dict, rows: int) -> dict:
         return character
 
 
-def check_for_challenge(board: list or tuple, character: dict) -> True:
+def check_for_challenge(board: list or tuple, character: dict) -> bool:
     """
     Checks for a challenge.
 
