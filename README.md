@@ -14,8 +14,14 @@ A01337600 & A01266055
 anothersam22 & WilsonSue
 
 ## Any important comments you'd like to make about your work:
+Player of game must only enter numbers or else game will crash!
+
+Set cheat_mode to True if you want to see solutions as you play. (default is True)
+
+Change level_1, level_2, and level_3 if you want to change how many points are needed to pass a level. 
 
 
+## Required Elements
 
 <table>
 <thead>
