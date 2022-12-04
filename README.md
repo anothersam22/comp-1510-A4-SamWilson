@@ -61,7 +61,7 @@ anothersam22 & WilsonSue
 
 <tr>
 <td>range function</td>
-<td>204</td>
+<td>200</td>
 </tr>
 
 <tr>
@@ -81,7 +81,7 @@ anothersam22 & WilsonSue
 
 <tr>
 <td>random</td>
-<td>202</td>
+<td>198</td>
 </tr>
 
 </tbody>
