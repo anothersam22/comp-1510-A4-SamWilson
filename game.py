@@ -475,12 +475,12 @@ def game():
     columns = 10
     encounter_percentage = 20
     achieved_goal = False
-    cheat_mode = True
+    cheat_mode = True # set to True if you want to see solution while playing.
     player_name = input("Welcome to game land, what is your name? ")
     puzzle_player = make_character(player_name)
     game_board = make_board(rows, columns, encounter_percentage)
     quit_state = False
-    level_1 = 11
+    level_1 = 11  # change these for higher/lower threshold for passing levels
     level_2 = 33
     level_3 = 66
 
