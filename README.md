@@ -31,47 +31,52 @@ anothersam22 & WilsonSue
 </tr>
 <tr>
 <td>list</td>
-<td></td>
+<td>90</td>
 </tr>
-<td>dictionary comprehension</td>
-<td>123</td>
+
 <tr>
 <td>list comprehension</td>
-<td>123</td>
+<td>96</td>
 </tr>
+
+<tr>
 <td>if statement</td>
-<td>123</td>
+<td>140</td>
+<tr>
 
 <tr>
 <td>for or while loop</td>
-<td>123</td>
+<td>134</td>
 </tr>
+
+<tr>
 <td>membership operator</td>
-<td>123</td>
+<td>204 (only in loops)</td>
+</tr>
 
 <tr>
 <td>range function</td>
-<td>123</td>
+<td>204</td>
 </tr>
 
 <tr>
 <td>itertools</td>
-<td>123</td>
+<td>100</td>
 </tr>
 
 <tr>
 <td>enumerate</td>
-<td>123</td>
+<td>28</td>
 </tr>
 
 <tr>
 <td>filter or map</td>
-<td>123</td>
+<td>not used</td>
 </tr>
 
 <tr>
-<td>rando</td>
-<td>123</td>
+<td>random</td>
+<td>202</td>
 </tr>
 
 </tbody>
