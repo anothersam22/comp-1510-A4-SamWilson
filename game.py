@@ -171,8 +171,6 @@ def check_for_challenge(board: list or tuple, character: dict) -> True:
 def challenge_protocol(player: dict,
                        puzzles: tuple or list,
                        cheat_mode: bool,
-                       # level_1: int,
-                       # level_2: int,
                        level_3: int, ) -> dict and bool:
     """
     Activates challenge protocol when check_for_challenge returns True
@@ -495,7 +493,6 @@ def game():
         challenge = check_for_challenge(game_board, puzzle_player)
         if challenge:
             puzzle_player, quit_state = challenge_protocol(
-                # puzzle_player, puzzles, cheat_mode, level_1, level_2, level_3)
                 puzzle_player, puzzles, cheat_mode, level_3)
         if quit_state is True:
             print("Goodbye!")
