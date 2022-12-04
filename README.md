@@ -40,6 +40,11 @@ anothersam22 & WilsonSue
 </tr>
 
 <tr>
+<td>dictionary comprehension</td>
+<td>75</td>
+</tr>
+
+<tr>
 <td>if statement</td>
 <td>140</td>
 <tr>
